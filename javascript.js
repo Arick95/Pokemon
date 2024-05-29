@@ -6,22 +6,21 @@ async function init() {
     let pokeJson = await pokeRepsonse.json();
     await loadingPokemonsUrls(pokeJson);
 }
-async function loadingPokemonsUrls(p){
+async function loadingPokemonsUrls(p) {
     pokemons = p.results
-    
+
     pokemons.forEach(element => {
         loadingPokemons(element.url)
     });
 }
 
-async function loadingPokemons(Pokeurl){
+async function loadingPokemons(Pokeurl) {
     let pokeRepsonse = await fetch(Pokeurl);
     let pokeJson = await pokeRepsonse.json();
-    
-    showPokemon(pokeJson)
+    loadPokemonsBox(pokeJson)
 }
 
-function showPokemon(pokeJson){
+function loadPokemonsBox(pokeJson) {
     console.log(pokeJson)
-    document.getElementById('Pokebox').innerHTML += `<div>${pokeJson.name}</div>`;
+    document.getElementById('Pokebox').innerHTML += `<div id=${pokeJson.id}>hallo</div>`;
 }
