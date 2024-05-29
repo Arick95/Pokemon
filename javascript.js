@@ -17,6 +17,11 @@ async function loadingPokemonsUrls(p){
 async function loadingPokemons(Pokeurl){
     let pokeRepsonse = await fetch(Pokeurl);
     let pokeJson = await pokeRepsonse.json();
+    
+    showPokemon(pokeJson)
+}
+
+function showPokemon(pokeJson){
     console.log(pokeJson)
-    document.getElementById('Pokebox').innerHTML += pokeJson.name;
+    document.getElementById('Pokebox').innerHTML += `<div>${pokeJson.name}</div>`;
 }
