@@ -1,8 +1,73 @@
 body{
     margin: 0;
 }
-
 .Pokecontainer{
-   
-    gap: 30px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.pokecheast{
+    margin: 30px;
+    display: flex;
+    flex-direction: column;
+    width: 170px;
+    height: 220px;
+    border-radius: 25px;
+    background-color: rgba(0, 0, 255, 0.267);
+    gap: 15px;
+    padding: 20px;
+}
+
+.color-fire {
+    background-color: #E53B19;
+}
+.color-water {
+    background-color: #278BCC;
+}
+.color-grass {
+    background-color: #91D08B;
+}
+.color-ground {
+    background-color: #956833;
+}
+.color-rock {
+    background-color: #A8995B;
+}
+.color-steel {
+    background-color: #9999A8;
+}
+.color-ice {
+    background-color: #68BAAC;
+}
+.color-fairy {
+    background-color: #D480CF;
+}
+.color-dark {
+    background-color: #796e6e;
+}
+.color-normal {
+    background-color: #A8A899;
+}
+.color-bug {
+    background-color: #83AD25;
+}
+.color-fighting {
+    background-color: #A84C3D;
+}
+.color-psychic {
+    background-color: #E55973;
+}
+.color-flying {
+    background-color: #87B5E5;
+}
+.color-electric {
+    background-color: #E5C600;
+}
+.color-poison {
+    background-color: #9553CD;
+}
+.color-dragon {
+    background-color: #4D64AB;
+}
+.color-ghost {
+    background-color: #633C64;
 }
