@@ -1,11 +1,13 @@
-body{
+body {
     margin: 0;
 }
-.Pokecontainer{
+
+.Pokecontainer {
     display: flex;
     flex-wrap: wrap;
 }
-.pokecheast{
+
+.pokecheast {
     margin: 30px;
     display: flex;
     flex-direction: column;
@@ -16,58 +18,102 @@ body{
     padding: 20px;
 }
 
+.d-none{
+    display: none;
+}
+.y-overflow-hide{
+    overflow-y: hidden;
+}
+
+.poke-overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 10;
+    background-color: rgb(118, 178, 247);
+}
+
+.pokeCard {
+    position: relative;
+    margin: 0 auto;
+    top: 25%;
+    width: 450px;
+    height: 450px;
+    background-color: #278acc81;
+    border-radius: 35px;
+}
+
+
 .color-fire {
     background-color: #e53b1985;
-    
 }
+
 .color-water {
     background-color: #278acc81;
 }
+
 .color-grass {
     background-color: #91d08b80;
 }
+
 .color-ground {
     background-color: #95673383;
 }
+
 .color-rock {
     background-color: #a8995b7c;
 }
+
 .color-steel {
     background-color: #9999a879;
 }
+
 .color-ice {
     background-color: #68baac81;
 }
+
 .color-fairy {
     background-color: #d480ce7c;
 }
+
 .color-dark {
     background-color: #796e6e6e;
 }
+
 .color-normal {
     background-color: #a8a89980;
 }
+
 .color-bug {
     background-color: #82ad2575;
 }
+
 .color-fighting {
     background-color: #a84b3d7c;
 }
+
 .color-psychic {
     background-color: #e559737c;
 }
+
 .color-flying {
     background-color: #87b4e580;
 }
+
 .color-electric {
     background-color: #e5c60081;
 }
+
 .color-poison {
     background-color: #9453cd73;
 }
+
 .color-dragon {
     background-color: #4d65ab81;
 }
+
 .color-ghost {
     background-color: #633c647e;
 }
