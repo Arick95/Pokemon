@@ -1,94 +1,117 @@
-url = 'https://pokeapi.co/api/v2/pokemon?limit=1&offset=0';
+let limit = 1;
+let offset = 0;
+url = `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`;
+let PokemonsArray = [];
 let PokemonUrl;
-let type;
-let name;
-let sprite;
-let id;
-let colorType;
+let seacher;
+
 
 async function init() {
-    await urlunpacker(url)
+    let pokeResponse = await fetch(url);
+    let pokeJson = await pokeResponse.json();
+    PokemonUrl = pokeJson;
     await loadingPokemonsUrls(PokemonUrl);
 }
 
 async function loadingPokemonsUrls(p) {
-    let pokemons = p.results
-    pokemons.forEach(async element => {
-        await loadingPokemons(element.url)
+    let items = p.results;
+    for (let i = 0; i < items.length; i++) {
+        let pokeResponse = await fetch(items[i].url);
+        let pokeJson = await pokeResponse.json();
+        let pokemondata = pokeJson;
+        await loadPokemonsData(pokemondata);
+    }
+}
+
+
+async function loadPokemonsData(pokemondata) {
+    document.getElementById('Pokecontainer').innerHTML = ``;
+    PokemonsArray.push(pokemondata);
+    PokemonsArray.forEach(async p => {
+        await showPokemons(p)
+
     });
+    /*   console.log(Pokemons)
+      name = PokemonUrl.name.charAt(0).toUpperCase() + PokemonUrl.name.slice(1);
+      sprite = PokemonUrl.sprites.front_default;
+      id = PokemonUrl.id;
+      await loadPokemons();
+    
+       */
 }
 
-async function loadingPokemons(Pokeurl) {
-    await urlunpacker(Pokeurl);
-    await loadPokemonsData();
-}
+async function showPokemons(Pokemon) {
 
-async function urlunpacker(Pokeurl) {
-    let pokeRepsonse = await fetch(Pokeurl);
-    let pokeJson = await pokeRepsonse.json();
-    PokemonUrl = await pokeJson;
-}
 
-async function loadPokemonsData() {
-    name = PokemonUrl.name.charAt(0).toUpperCase() + PokemonUrl.name.slice(1);
-    sprite = PokemonUrl.sprites.front_default;
-    id = PokemonUrl.id;
-    await loadPokemons();
-    PokemonUrl.types.forEach(element => {
-        type = element.type.name;
-        type = type.charAt(0).toUpperCase() + type.slice(1);
-        addtypes();
-    });
-    addBackgroundColor();
-}
-function addtypes() {
-    document.getElementById(`poketype${id}`).innerHTML += `<div>${type}</div>`;
-}
+    let name = Pokemon.name.charAt(0).toUpperCase() + Pokemon.name.slice(1);
+    let sprite = Pokemon.sprites.front_default;
+    let id = Pokemon.id;
 
-function addBackgroundColor() {
-    PokemonUrl.types.reverse().forEach(element => {
-        colorType = element.type.name;
-    });
-    document.getElementById(`pokecheast${id}`).classList.add(`color-${colorType}`)
-}
-
-async function loadPokemons() {
     document.getElementById('Pokecontainer').innerHTML += `  
-    <div class="Pokebox" id="Pokebox">
-        <div class="pokecheast" id="pokecheast${id}" onclick="openOverlay(${id})">
-        <div class="pokespritebox" id="pokespritebox">
-            <img class="sprite" src="${sprite}">
-        </div>
-        <div class="pokenumber" id="pokenumber">${id}.</div>
-        <div class="pokename" id="pokename">${name}</div>
-        <div class="poketypebox" id="poketypebox">
-            <div class="poketype" id="poketype${id}"></div>
-            </div>
-        </div>
-    </div>`;
-    await loadInfo(id);
+      <div class="Pokebox" id="Pokebox${id}" onclick="openOverlay(${id})">
+          <div class="pokecheast" id="pokecheast${id}">
+          <div class="pokespritebox" id="pokespritebox${id}">
+              <img class="sprite" src="${sprite}">
+          </div>
+          <div class="pokenumber" id="pokenumber${id}">${id}.</div>
+          <div class="pokename" id="pokename${id}">${name}</div>
+          <div class="poketypebox" id="poketypebox${id}">
+              <div class="poketype" id="poketype${id}"></div>
+              </div>
+          </div>
+      </div>`;
+    await unpackTypesData(Pokemon, id)
+    await loadInfo(Pokemon,name,sprite,id);
+    /*    */
 }
 
-async function loadInfo(i) {
-    console.log(PokemonUrl)
+
+
+async function unpackTypesData(Pokemon, i) {
+    Pokemon.types.forEach(async element => {
+        let type = element.type.name;
+        let typesName = type.charAt(0).toUpperCase() + type.slice(1);
+        addtypes(typesName, i)
+    });
+    await addBackgroundColor(Pokemon, i);
+}
+
+function addtypes(type, id) {
+    document.getElementById(`poketype${id}`).innerHTML += `<div>${type}</div>`;
+
+}
+
+async function addBackgroundColor(Pokemon, i) {
+
+    let Poketype = Pokemon.types
+ 
+    Poketype.forEach(element => {
+        let colorTypes = element.type.name;
+        document.getElementById(`pokecheast${i}`).classList.add(`color-${colorTypes}`)
+    });
+
+
+}
+
+async function loadInfo(Pokemon,name,sprite,id) {
     document.getElementById(`biginfo`).innerHTML += `
-    <div class="poke-overlay d-none" id="poke-overlay${i}" onclick="closeOverlay(${i})">
+    <div class="poke-overlay d-none" id="poke-overlay${id}" onclick="closeOverlay(${id})">
             <div class="pokeCard">
                 <img class="sprite" src="${sprite}">
-                <div id="Ability${i}">Ability
-                <div id="effect${i}"></div></div>
-                <div id="Hidden-Ability${i}">Hidden Ability
+                <div id="Ability${id}">Ability
+                <div id="effect${id}"></div></div>
+                <div id="Hidden-Ability${id}">Hidden Ability
                 </div>
                 <button>Description</button>
                 <button>Stats</button>
                 <button>Move</button>
             </div>
         </div>`
-    await loadingAbility();
+    await loadingAbility(Pokemon,id);
 }
 
-async function loadingAbility() {
-    PokemonUrl.abilities.forEach(async element => {
+async function loadingAbility(Pokemon,id) {
+    Pokemon.abilities.forEach(async element => {
         if (element.is_hidden) {
             let hide = element.ability.name.charAt(0).toUpperCase() + element.ability.name.slice(1);
             document.getElementById(`Hidden-Ability${id}`).innerHTML += `<div>${hide}</div>`;
@@ -112,3 +135,14 @@ function openOverlay(i) {
 function closeOverlay(i) {
     document.getElementById(`poke-overlay${i}`).classList.add(`d-none`)
 }
+
+function searchPokemon() {
+    seacher = document.getElementById('search-bar').value;
+    PokemonUrl.forEach(element => {
+        if (element.slice(0, 99) === seacher) {
+            console.log('work');
+        } else {
+            console.log('not')
+        }
+    });
+};
