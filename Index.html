@@ -6,26 +6,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="javascript.js"></script>
     <link rel="stylesheet" href="styles.css">
-    <title>Document</title>
+    <title>Pokemon</title>
 </head>
 
 <body onload="init()">
 
-    <head>Pokemon
-        <input onchange="searchPokemon()" id="search-bar">
-        <button >
-            search
-        </button>
-    </head>
+    <header>
+        <p>Pokemon</p>
+        <div class="input-class">
+            <input onchange="searchPokemon()" id="search-bar" placeholder="Search Pokemon">
+
+        </div>
+    </header>
+    <div><span>You Loading Pokemons</span>
+        <input id="input-number" type="number" onchange="howManyPokemonShouldLoading()" placeholder="25">
+    </div>
+    <div><span>Start Load the Pokemon Generation</span>
+        <select name="Generation" id="Generation" onchange="LoadPokemonOffSet()">
+            <option value="0">1Gen</option>
+            <option value="151">2Gen</option>
+            <option value="251">3Gen</option>
+            <option value="386">4Gen</option>
+            <option value="494">5Gen</option>
+            <option value="649">6Gen</option>
+            <option value="721">7Gen</option>
+            <option value="809">8Gen</option>
+            <option value="905">9Gen</option>
+        </select>
+    </div>
     <div id="biginfo">
-      
         <div class="Pokecontainer" id="Pokecontainer">
         </div>
+
     </div>
-
-
-
-
 
     <footer></footer>
 </body>
