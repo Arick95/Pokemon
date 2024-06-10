@@ -1,25 +1,34 @@
 body {
     margin: 0;
-    background-color: rgba(255, 255, 0, 0.089)
-    
+    background-color: rgba(0, 183, 255, 0.438)
 }
+
 ::-webkit-scrollbar {
     width: 10px;
-  }
+}
+
 ::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 2px #ddff0091; 
+    box-shadow: inset 0 0 2px #ddff0091;
     border-radius: 10px;
-  }
-  ::-webkit-scrollbar-thumb {
+}
+
+::-webkit-scrollbar-thumb {
     background: #ff000091;
     border-radius: 100px;
-  }
+}
+
 input {
-    border-radius: 5px;
+    border-radius: 15px;
+    padding: 5px;
+    border: solid black 5px;
+    border-style: double;
 }
 
 select {
     border-radius: 5px;
+    padding: 5px;
+    border: solid black 5px;
+    border-style: double;
 }
 
 header {
@@ -27,23 +36,63 @@ header {
     top: 0;
     background-color: rgb(255, 5, 5);
     z-index: 100;
-    height: 75px;
+    padding-bottom: 10px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
     padding-right: 100px;
     padding-left: 100px;
 }
 
 p {
+    line-height: 7px;
     font-family: cursive;
     font-size: 40px;
     font-weight: bold;
     color: #FFCB00;
-    
     font-style: italic;
-    text-shadow: 5px 5px 20px  rgb(7, 107, 247);
+    text-shadow: 5px 5px 20px rgb(7, 107, 247);
+}
 
+.title-container{
+display: flex;
+flex-direction: column;
+justify-content: flex-end;
+}
+
+.generation{
+    background-color: #7bff0077;
+    font-weight: bolder;
+    border-radius: 15px;
+    padding: 5px;
+}
+.load{
+    background-color: #fdf8e3c4;
+    font-weight: bolder;
+    padding: 5px;
+}
+.load-generation {
+    font-family: cursive;
+    font-size: 20px;
+    color: #FFCB00;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.load-Pokemons{
+    font-family: cursive;
+    font-size: 20px;
+    color: #e7e7e7;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.load-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 input::-webkit-inner-spin-button {
@@ -61,7 +110,7 @@ input::-webkit-inner-spin-button {
     padding-top: 75px;
     padding-right: 25px;
     padding-left: 25px;
-   
+
 }
 
 .Pokebox {
@@ -95,7 +144,7 @@ input::-webkit-inner-spin-button {
 }
 
 .Pokeframe-Overlay:hover {
-    transform: scale(1.4);
+    transform: scale(1.25);
 
 }
 
@@ -151,6 +200,8 @@ input::-webkit-inner-spin-button {
 .information {
     max-height: 200px;
     overflow: auto;
+    font-style: italic;
+    font-weight: 600;
 }
 
 .blur {
@@ -163,15 +214,14 @@ input::-webkit-inner-spin-button {
     left: 0;
     height: 100%;
     width: 100%;
-    z-index: 10;
+    z-index: 100;
     background-color: rgba(248, 248, 248, 0);
-
 }
 
 .pokeCard {
     position: relative;
     margin: 0 auto;
-    top: 25%;
+    top: 10%;
     width: 450px;
     max-height: 450px;
     background-color: #278acc81;
@@ -194,6 +244,7 @@ input::-webkit-inner-spin-button {
     margin: 5px 0;
     color: white;
     font-weight: bold;
+    border-radius: 15px;
 
 }
 
@@ -208,6 +259,12 @@ input::-webkit-inner-spin-button {
     border-radius: 35px;
     background-color: rgba(0, 0, 0, 0.716);
 }
+.close-btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+}
 
 .Overlay-flex {
     display: flex;
@@ -215,16 +272,17 @@ input::-webkit-inner-spin-button {
     justify-content: space-between;
     margin: 10px;
 }
+
 .Overlay-column {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: space-between;
     margin: 10px;
-   
+
 }
 
-.information{
+.information {
     margin: 10px;
 }
 
@@ -408,3 +466,35 @@ input::-webkit-inner-spin-button {
 .type-Ghost {
     background-color: #633c64;
 }
+
+@media only screen and (max-width: 1500px) {
+   
+ 
+  }
+
+@media only screen and (max-width: 600px) {
+    header{
+        display: flex;
+        flex-direction: column;
+    }
+    .pokeCard{
+        width: 80vw;
+        top: 10%;
+        
+    }
+    .information{
+        max-height: 40vw;;
+    }
+    .Overlay-flex{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    .Overlay-btn-box{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+  }

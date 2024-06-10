@@ -13,29 +13,36 @@
 
 <body onload="init()">
 
-    <header>
-        <p>Pokemon</p>
-        <div class="input-class">
-            <input onchange="searchPokemon()" id="search-bar" placeholder="Search Pokemon">
-
+    <header id="header">
+        <div class="title-container">
+            <p>Pokemon</p>
+            <div class="input-class">
+                <input onchange="searchPokemon()" id="search-bar" placeholder="Search Pokemon"
+                    style="font-family: cursive;">
+            </div>
+        </div>
+        <div class="load-container">
+            <div class="load-generation"><span>Load Generation</span>
+                <select class="generation" name="Generation" id="Generation" style="font-family: cursive;" onchange="LoadPokemonOffSet()">
+                    <option value="0">1 Generation</option>
+                    <option value="151">2 Generation</option>
+                    <option value="251">3 Generation</option>
+                    <option value="386">4 Generation</option>
+                    <option value="494">5 Generation</option>
+                    <option value="649">6 Generation</option>
+                    <option value="721">7 Generation</option>
+                    <option value="809">8 Generation</option>
+                    <option value="905">9 Generation</option>
+                </select>
+            </div>
+            <div class="load-Pokemons"><span>Load Pokemon</span>
+                <input class="load" id="input-number" type="number" onchange="howManyPokemonShouldLoading()"
+                    style="font-family: cursive;" placeholder="25">
+            </div>
         </div>
     </header>
-    <div><span>Load Pokemon</span>
-        <input id="input-number" type="number" onchange="howManyPokemonShouldLoading()" placeholder="25">
-    </div>
-    <div><span>Load Generation</span>
-        <select name="Generation" id="Generation" onchange="LoadPokemonOffSet()">
-            <option value="0">1Gen</option>
-            <option value="151">2Gen</option>
-            <option value="251">3Gen</option>
-            <option value="386">4Gen</option>
-            <option value="494">5Gen</option>
-            <option value="649">6Gen</option>
-            <option value="721">7Gen</option>
-            <option value="809">8Gen</option>
-            <option value="905">9Gen</option>
-        </select>
-    </div>
+
+
     <div id="biginfo">
         <div class="Pokecontainer" id="Pokecontainer">
         </div>

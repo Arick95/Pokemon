@@ -1,4 +1,4 @@
-let limit = 4;
+let limit = 25;
 let offset = 0;
 let overlayArray = [];
 let PokemonsArray = [];
@@ -112,9 +112,11 @@ async function Overlay(Pokemon, name, sprite, id) {
         <div class="poke-overlay" id="poke-overlay${id}" onclick="closeOverlay(${id})">
 
             <div class="pokeCard" onclick="preventBubbling(event)">
+            
                 <div class="Pokeframe-Overlay">
+                
                     <div id="overlay-background${id}" class="overlay-background">
-
+                        <button class="Overlay-btn close-btn" onclick="closeOverlay(${id})">x</button>
                         <div class="pokename">${name}</div>
                         <div class="pokespritebox">
                             <img class="sprite" src="${sprite}">
@@ -192,9 +194,9 @@ async function loadAppearance(Pokemon, id) {
     Weight = Pokemon.weight / 10;
     Height = Pokemon.height / 10;
     document.getElementById(`appearance-container${id}`).innerHTML += `<div id="ministats${id}" class="Overlay-column">
-    <div>Weight: ${Weight} kg .</div>
-    <div>Index Number : ${id}.</div>
-    <div></div>Height: ${Height} m.</div>
+    <div>Weight: ${Weight} Kilogramm.</div>
+    <div>Index Number : #${id}.</div>
+    <div></div>Height: ${Height} Meter.</div>
     `
 }
 
@@ -219,13 +221,14 @@ function switchToMove(i) {
 function openOverlay(i) {
     document.getElementById(`MainOverlay${i}`).classList.remove(`d-none`);
     document.getElementById(`Pokecontainer`).classList.add(`blur`);
+    document.getElementById(`header`).classList.add(`blur`);
 }
 
 function closeOverlay(i) {
-
     document.getElementById(`MainOverlay${i}`).classList.add(`d-none`);
     document.getElementById(`Pokecontainer`).classList.remove(`blur`);
     document.getElementById(`MainOverlay${i}`).remove();
+    document.getElementById(`header`).classList.remove(`blur`);
 }
 
 function preventBubbling(event) {
