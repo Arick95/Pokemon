@@ -125,10 +125,10 @@ async function Overlay(Pokemon, name, sprite, id) {
                             <div id="Hidden-Ability${id}">Hidden Ability
                             </div>
                         </div>
-                        <div class="Overlay-btn">
-                            <button onclick="switchToAppearance(${id})">Appearance</button>
-                            <button onclick="switchToStats(${id})">Stats</button>
-                            <button onclick="switchToMove(${id})">Move</button>
+                        <div class="Overlay-btn-box">
+                            <button class="Overlay-btn" onclick="switchToAppearance(${id})">Appearance</button>
+                            <button class="Overlay-btn" onclick="switchToStats(${id})">Stats</button>
+                            <button class="Overlay-btn" onclick="switchToMove(${id})">Move</button>
                         </div>
                         <div class="information" id="information${id}">
                             <div class="d-none" id="appearance-container${id}"> </div>
@@ -177,7 +177,7 @@ async function loadStats(Pokemon, id) {
         document.getElementById(`stats-container${id}`).innerHTML += `
         <div>
             <div id="bar" class="bar  color-${name}" style="width:${stats.base_stat}px;"></div>
-            <div id="stateName" class="">${name}: ${stats.base_stat}</div>
+            <div id="stateName" class="">${name}: ${stats.base_stat}.</div>
         </div>`;
     });
 }
@@ -191,10 +191,10 @@ async function loadMovePool(Pokemon, id) {
 async function loadAppearance(Pokemon, id) {
     Weight = Pokemon.weight / 10;
     Height = Pokemon.height / 10;
-    document.getElementById(`appearance-container${id}`).innerHTML += `<div id="ministats${id}" class="Overlay-flex">
-    <div>Weight: ${Weight} kg</div>
-    <div>Index Number : ${id}</div>
-    <div></div>Height: ${Height} m</div>
+    document.getElementById(`appearance-container${id}`).innerHTML += `<div id="ministats${id}" class="Overlay-column">
+    <div>Weight: ${Weight} kg .</div>
+    <div>Index Number : ${id}.</div>
+    <div></div>Height: ${Height} m.</div>
     `
 }
 
@@ -239,8 +239,8 @@ async function searchPokemon() {
     if (seacher && results.length > 0) {
         PokemonsArray = results;
         document.getElementById('Pokecontainer').innerHTML = ``;
-        loadPokemonArray();  
-        PokemonsArray = Pokemonbackup;  
+        loadPokemonArray();
+        PokemonsArray = Pokemonbackup;
     }
     else {
         await ifPokemonNoFund();
@@ -256,7 +256,7 @@ async function pokemonFilter(seacher) {
 
 async function ifPokemonNoFund() {
     PokemonsArray = []
-    init();
+    await init();
 }
 function howManyPokemonShouldLoading() {
     limit = document.getElementById('input-number').value;
