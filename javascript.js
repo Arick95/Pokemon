@@ -1,10 +1,11 @@
-let limit = 25;
+let limit = 4;
 let offset = 0;
 let overlayArray = [];
 let PokemonsArray = [];
 let PokemonUrl;
 let seacher;
-
+let results;
+let Pokemonbackup = [];
 
 async function init() {
     let url = `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`;
@@ -27,6 +28,7 @@ async function loadingPokemonsUrls(p) {
 async function loadPokemonsData(pokemondata) {
     document.getElementById('Pokecontainer').innerHTML = ``;
     PokemonsArray.push(pokemondata);
+    Pokemonbackup = PokemonsArray;
 
     await loadPokemonArray()
 
@@ -180,7 +182,7 @@ async function loadStats(Pokemon, id) {
     });
 }
 async function loadMovePool(Pokemon, id) {
-    
+
     Pokemon.moves.forEach(m => {
         let name = m.move.name.charAt(0).toUpperCase() + m.move.name.slice(1);
         document.getElementById(`movepool-container${id}`).innerHTML += `<div id="movepool${id}"style="margin-bottom:5px">${name}</div>`;
@@ -230,21 +232,32 @@ function preventBubbling(event) {
     event.stopPropagation();
 }
 
-function searchPokemon() {
-    seacher = document.getElementById('search-bar').value;
-
-    const results = PokemonsArray.filter(element => {
-        return element.name.slice(0, 99).includes(seacher);
-    });
-    PokemonsArray = results;
-    document.getElementById('Pokecontainer').innerHTML = ``;
-    loadPokemonArray();
-
-    if (!seacher) {
-        PokemonsArray = []
-        init();
+async function searchPokemon() {
+    let names = document.getElementById('search-bar').value;
+    seacher = names.toLowerCase()
+    await pokemonFilter(seacher)
+    if (seacher && results.length > 0) {
+        PokemonsArray = results;
+        document.getElementById('Pokecontainer').innerHTML = ``;
+        loadPokemonArray();  
+        PokemonsArray = Pokemonbackup;  
+    }
+    else {
+        await ifPokemonNoFund();
     }
 };
+
+async function pokemonFilter(seacher) {
+    results = PokemonsArray.filter(element => {
+        let PoekmonName = element.name.slice(0, 99)
+        return PoekmonName.includes(seacher);
+    });
+}
+
+async function ifPokemonNoFund() {
+    PokemonsArray = []
+    init();
+}
 function howManyPokemonShouldLoading() {
     limit = document.getElementById('input-number').value;
     PokemonsArray = []
