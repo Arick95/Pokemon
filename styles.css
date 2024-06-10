@@ -10,11 +10,14 @@ body {
 ::-webkit-scrollbar-track {
     box-shadow: inset 0 0 2px #ddff0091;
     border-radius: 10px;
+    background-color:#fffffffa ;
+    
 }
 
 ::-webkit-scrollbar-thumb {
     background: #ff000091;
     border-radius: 100px;
+    
 }
 
 input {
@@ -42,6 +45,8 @@ header {
     justify-content: space-around;
     padding-right: 100px;
     padding-left: 100px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
 }
 
 p {
@@ -54,23 +59,25 @@ p {
     text-shadow: 5px 5px 20px rgb(7, 107, 247);
 }
 
-.title-container{
-display: flex;
-flex-direction: column;
-justify-content: flex-end;
+.title-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
 }
 
-.generation{
+.generation {
     background-color: #7bff0077;
     font-weight: bolder;
     border-radius: 15px;
     padding: 5px;
 }
-.load{
+
+.load {
     background-color: #fdf8e3c4;
     font-weight: bolder;
     padding: 5px;
 }
+
 .load-generation {
     font-family: cursive;
     font-size: 20px;
@@ -80,7 +87,8 @@ justify-content: flex-end;
     flex-direction: column;
     justify-content: space-between;
 }
-.load-Pokemons{
+
+.load-Pokemons {
     font-family: cursive;
     font-size: 20px;
     color: #e7e7e7;
@@ -89,6 +97,7 @@ justify-content: flex-end;
     flex-direction: column;
     justify-content: space-between;
 }
+
 .load-container {
     display: flex;
     flex-direction: column;
@@ -259,7 +268,8 @@ input::-webkit-inner-spin-button {
     border-radius: 35px;
     background-color: rgba(0, 0, 0, 0.716);
 }
-.close-btn{
+
+.close-btn {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -467,34 +477,36 @@ input::-webkit-inner-spin-button {
     background-color: #633c64;
 }
 
-@media only screen and (max-width: 1500px) {
-   
- 
-  }
+@media only screen and (max-width: 1500px) {}
 
 @media only screen and (max-width: 600px) {
-    header{
+    header {
         display: flex;
         flex-direction: column;
     }
-    .pokeCard{
+
+    .pokeCard {
         width: 80vw;
         top: 10%;
-        
+
     }
-    .information{
-        max-height: 40vw;;
+
+    .information {
+        max-height: 40vw;
+        ;
     }
-    .Overlay-flex{
+
+    .Overlay-flex {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
         gap: 10px;
     }
-    .Overlay-btn-box{
+
+    .Overlay-btn-box {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
         gap: 10px;
     }
-  }
+}
