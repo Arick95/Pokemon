@@ -10,14 +10,33 @@ body {
 ::-webkit-scrollbar-track {
     box-shadow: inset 0 0 2px #ddff0091;
     border-radius: 10px;
-    background-color:#fffffffa ;
-    
+    background-color: #fffffffa;
 }
+
+.loadscreen {
+    display: grid;
+    max-width: 500px;
+    width: 50vw;
+    animation: loading 4s linear infinite;
+
+}
+
+@keyframes loading {
+    0% {
+        transform: rotate(0);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
 
 ::-webkit-scrollbar-thumb {
     background: #ff000091;
     border-radius: 100px;
-    
+
 }
 
 input {
@@ -49,6 +68,14 @@ header {
     border-bottom-right-radius: 20px;
 }
 
+.loading-text {
+    display: inline-block;
+    line-height: 1.4em;
+    height: 100px;
+    width: 30vw;
+    line-break: auto;
+}
+
 p {
     line-height: 7px;
     font-family: cursive;
@@ -57,6 +84,7 @@ p {
     color: #FFCB00;
     font-style: italic;
     text-shadow: 5px 5px 20px rgb(7, 107, 247);
+    line-break: anywhere;
 }
 
 .title-container {

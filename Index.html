@@ -7,15 +7,16 @@
     <script src="javascript.js"></script>
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="./Pokeball.png">
-
     <title>Pokemon</title>
 </head>
 
 <body onload="init()">
-
+ 
     <header id="header">
         <div class="title-container">
             <p>Pokemon</p>
+            <div id="loadscreen" >
+            </div>
             <div class="input-class">
                 <input onkeyup="searchPokemon()" id="search-bar" placeholder="Search Pokemon"
                     style="font-family: cursive;">
@@ -23,7 +24,8 @@
         </div>
         <div class="load-container">
             <div class="load-generation"><span>Load Generation</span>
-                <select class="generation" name="Generation" id="Generation" style="font-family: cursive;" onchange="LoadPokemonOffSet()">
+                <select class="generation" name="Generation" id="Generation" style="font-family: cursive;"
+                    onchange="LoadPokemonOffSet()">
                     <option value="0">1 Generation</option>
                     <option value="151">2 Generation</option>
                     <option value="251">3 Generation</option>
@@ -41,15 +43,14 @@
             </div>
         </div>
     </header>
-
-
     <div id="biginfo">
         <div class="Pokecontainer" id="Pokecontainer">
+          
         </div>
-
     </div>
-
+   
     <footer></footer>
+
 </body>
 
 </html>

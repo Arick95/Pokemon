@@ -1,13 +1,22 @@
-let limit = 25;
+let limit = 300;
 let offset = 0;
 let overlayArray = [];
 let PokemonsArray = [];
 let PokemonUrl;
 let seacher;
 let results;
+let rotate = 0;
+let loadingIntervall;
 
 
 async function init() {
+    document.getElementById('Pokecontainer').innerHTML = ``;
+    document.getElementById('Pokecontainer').innerHTML = `
+    <div style="display:flex; flex-direction:column">
+    <img class="loadscreen" src="pokeball_loading.png">
+    <p class="loading-text">Pokemon are loading...</p>
+    </div>`;
+
     let url = `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`;
     let pokeResponse = await fetch(url);
     let pokeJson = await pokeResponse.json();
@@ -17,25 +26,38 @@ async function init() {
 
 async function loadingPokemonsUrls(p) {
     let items = p.results;
+
     for (let i = 0; i < items.length; i++) {
         let pokeResponse = await fetch(items[i].url);
         let pokeJson = await pokeResponse.json();
         let pokemondata = pokeJson;
         await loadPokemonsData(pokemondata);
+
     }
 }
 
 async function loadPokemonsData(pokemondata) {
-    document.getElementById('Pokecontainer').innerHTML = ``;
+
     PokemonsArray.push(pokemondata);
 
-    await loadPokemonArray()
+    if (PokemonsArray.length == limit) {
 
+        document.getElementById('Pokecontainer').innerHTML = ``;
+
+        await loadPokemonArray()
+    }
 }
 async function loadPokemonArray() {
+
     PokemonsArray.forEach(async p => {
-        await showPokemons(p)
-    });
+        await showPokemons(p);
+    })
+
+}
+
+function loadingscreenshow() {
+    let loadscreen = document.getElementById('loadscreen')
+    loadscreen.style.transform = `rotate(360deg)`;
 }
 
 async function showPokemons(Pokemon) {
@@ -238,10 +260,10 @@ async function searchPokemon() {
     let names = document.getElementById('search-bar').value;
     seacher = names.toLowerCase()
     Array.from(PokemonsArray).forEach(function (item) {
-        if (item.name.slice(0, 99).includes(seacher)){
+        if (item.name.slice(0, 99).includes(seacher)) {
             document.getElementById(`Pokebox${item.id}`).classList.remove(`d-none`);
         }
-        else{
+        else {
             document.getElementById(`Pokebox${item.id}`).classList.add(`d-none`);
         }
     }
@@ -249,6 +271,7 @@ async function searchPokemon() {
 }
 
 function howManyPokemonShouldLoading() {
+
     limit = document.getElementById('input-number').value;
     PokemonsArray = []
     init();
