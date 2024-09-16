@@ -16,9 +16,9 @@ body {
 .loadscreen {
     display: grid;
     max-width: 500px;
-    width: 50vw;
+    width: 35vw;
     animation: loading 4s linear infinite;
-
+    text-shadow: 8px 8px 25px rgb(0, 0, 0);
 }
 
 @keyframes loading {
@@ -74,6 +74,7 @@ header {
     height: 100px;
     width: 30vw;
     line-break: auto;
+   
 }
 
 p {
@@ -517,6 +518,9 @@ input::-webkit-inner-spin-button {
         width: 80vw;
         top: 10%;
 
+    }
+    .loading-text{
+        font-size: 25px;
     }
 
     .information {

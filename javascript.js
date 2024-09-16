@@ -1,4 +1,4 @@
-let limit = 300;
+let limit = 25;
 let offset = 0;
 let overlayArray = [];
 let PokemonsArray = [];
@@ -7,14 +7,14 @@ let seacher;
 let results;
 let rotate = 0;
 let loadingIntervall;
-
+let pokemonload = 0;
 
 async function init() {
     document.getElementById('Pokecontainer').innerHTML = ``;
     document.getElementById('Pokecontainer').innerHTML = `
     <div style="display:flex; flex-direction:column">
     <img class="loadscreen" src="pokeball_loading.png">
-    <p class="loading-text">Pokemon are loading...</p>
+    <p id="loading-text" class="loading-text"></p>
     </div>`;
 
     let url = `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`;
@@ -26,20 +26,22 @@ async function init() {
 
 async function loadingPokemonsUrls(p) {
     let items = p.results;
-
+    pokemonload = 0;
+    document.getElementById('loading-text').innerHTML = ` Pokemon are loading 0 from ${limit}`;
     for (let i = 0; i < items.length; i++) {
         let pokeResponse = await fetch(items[i].url);
         let pokeJson = await pokeResponse.json();
         let pokemondata = pokeJson;
-        await loadPokemonsData(pokemondata);
-
+        document.getElementById('loading-text').innerHTML = `Pokemon are loading ${pokemonload} from ${limit}`;
+        pokemonload++
+        await loadPokemonsData(pokemondata);    
     }
 }
 
 async function loadPokemonsData(pokemondata) {
 
     PokemonsArray.push(pokemondata);
-
+    
     if (PokemonsArray.length == limit) {
 
         document.getElementById('Pokecontainer').innerHTML = ``;
